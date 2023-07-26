@@ -1,0 +1,337 @@
+Build script:
+#!/bin/bash
+echo "Bash Scripting"
+firstline=$(head -n 1 source/changelog.md)
+read -a splitfirstline <<< $firstline
+version=${splitfirstline[1]}
+echo "You are building version" $version
+echo 'Do you want to continue? (enter "1" for yes, "0" for no)'
+read versioncontinue
+if [ $versioncontinue -eq 1 ]
+then
+  echo "OK"
+else
+  echo "Please come back when you are ready"
+fi
+for filename in source/*
+do
+  echo $filename
+done
+if [ "$filename" == "source/secretinfo.md" ]
+then
+  echo "Not copying" $filename
+else
+  echo "Copying" $filename
+fi
+if [ "$filename" == "source/secretinfo.md" ]
+then
+  echo "Not copying" $filename
+else
+  echo "Copying" $filename
+  cp $filename build/.
+fi
+cd build/
+# We'll add more code here later
+cd ..
+echo "Build version $version contains:"
+ls
+
+
+
+Zoo:
+
+$ git init
+Initialized empty Git repository in /home/ccuser/workspace/manhattan-zoo-1/.git/
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        meal-regimens.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add meal-regimens.txt
+$ git commit -m "meal regimens added"
+[master (root-commit) 0955d21] meal regimens added
+ 1 file changed, 14 insertions(+)
+ create mode 100644 meal-regimens.txt
+$ git add meal-regimens.txt
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   meal-regimens.txt
+
+$ git commit -m "meal regimens added"
+[master ac41a0f] meal regimens added
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+$ git log
+commit ac41a0fc4675aba63578c9348de0f1652de436dd
+Author: codecademy <ccuser@codecademy.com>
+Date:   Tue Jul 18 10:04:36 2023 +0000
+
+    meal regimens added
+
+commit 0955d21b4e1c457af0ae3d77983e3972e6c1a35e
+Author: codecademy <ccuser@codecademy.com>
+Date:   Tue Jul 18 09:58:45 2023 +0000
+
+    meal regimens added
+
+
+
+
+Robots:
+
+$ git init
+Initialized empty Git repository in /home/ccuser/workspace/snapfit-robots/.git/
+$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        disclaimer.txt
+        instructions.txt
+        warranty.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add disclaimer.txt 
+$ git add instructions.txt
+$ git add warranty.txt
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   disclaimer.txt
+        new file:   instructions.txt
+        new file:   warranty.txt
+
+$ git commit -m "files added to staging area"
+[master (root-commit) 835a4fa] files added to staging area
+ 3 files changed, 70 insertions(+)
+ create mode 100644 disclaimer.txt
+ create mode 100644 instructions.txt
+ create mode 100644 warranty.txt
+$ git log
+commit 835a4fa2f7d7ae3ffef400aa5f6d5b2327fd77b9
+Author: codecademy <ccuser@codecademy.com>
+Date:   Tue Jul 18 10:12:52 2023 +0000
+
+    files added to staging area
+$ git add disclaimer.txt
+$ git commit -m "diclaimer updated"
+[master ec2dddd] diclaimer updated
+ 1 file changed, 1 insertion(+)
+$ git log
+commit ec2dddd7be64afa183e86970285d62ca35ebe87f
+Author: codecademy <ccuser@codecademy.com>
+Date:   Tue Jul 18 10:14:54 2023 +0000
+
+    diclaimer updated
+
+commit 835a4fa2f7d7ae3ffef400aa5f6d5b2327fd77b9
+Author: codecademy <ccuser@codecademy.com>
+Date:   Tue Jul 18 10:12:52 2023 +0000
+
+    files added to staging area
+
+
+
+poem:
+
+$ git checkout HEAD road-not-taken.txt
+$ git checkout -- oven-bird.txt
+$ git diff fire-and-ice.txt
+$ git add road-not-taken.txt oven-bird.txt fire-and-ice.txt
+$ git reset HEAD fire-and-ice.txt
+Unstaged changes after reset:
+M       fire-and-ice.txt
+$ git commit -m "fire and ice removed"
+[master 842fabb] fire and ice removed
+ 2 files changed, 38 insertions(+), 39 deletions(-)
+ rewrite oven-bird.txt (99%)
+ rewrite road-not-taken.txt (99%)
+$ git checkout -- oven-bird.txt
+$ git diff fire-and-ice.txt
+$ git add road-not-taken.txt oven-bird.txt fire-and-ice.txt
+$ git reset HEAD fire-and-ice.txt
+Unstaged changes after reset:
+M       fire-and-ice.txt
+$ git commit -m "fire and ice removed"
+[master 842fabb] fire and ice removed
+ 2 files changed, 38 insertions(+), 39 deletions(-)
+ rewrite oven-bird.txt (99%)
+ rewrite road-not-taken.txt (99%)
+$ git add road-not-taken.txt oven-bird.txt fire-and-ice.txt
+$ git commit -m "added all files"
+[master 9d3f49d] added all files
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+
+
+ASCII portfolio:
+
+$ git checkout HEAD portrait.txt
+$ git add portrait.txt
+$ git commit -m "portrait file added"
+[master 8733583] portrait file added
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+$ git add portrait.txt house.txt tree.txt
+$ git commit -m "all files added"
+[master 50114d3] all files added
+ 3 files changed, 19 insertions(+), 2 deletions(-)
+ create mode 100644 house.txt
+$ git add .
+$ git reset HEAD house.txt
+Unstaged changes after reset:
+M       house.txt
+$ git commit -m "house file removed"
+[master 90bdf51] house file removed
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+
+
+
+Birthday party:
+
+$ git branch
+* master
+  moma
+  whitney
+$ git branch -d moma
+error: The branch 'moma' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D moma'.
+$ git branch -D moma
+Deleted branch moma (was 978e5a1).
+$ git branch -D whitney
+Deleted branch whitney (was 9b384f9).
+$ git branch unordered-list
+$ git checkout unordered-list
+Switched to branch 'unordered-list'
+$ git add index.html
+$ git commit -m "first commit"
+[unordered-list 0e67e7b] first commit
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+$ git checkout master
+Switched to branch 'master'
+$ git merge unordered-list master
+Updating 1481f5a..0e67e7b
+Fast-forward
+ index.html | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+$ git branch big-heading
+$ git checkout big-heading
+Switched to branch 'big-heading'
+$ git add index.html
+$ git commit -m "last commit"
+[big-heading 3422833] last commit
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+$ git checkout master
+Switched to branch 'master'
+$ git merge big-heading master
+Updating 0e67e7b..3422833
+Fast-forward
+ index.html | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+
+Ruby time calculator:
+
+$ git branch
+  edits
+* master
+$ git merge edits master
+Auto-merging examples.md
+CONFLICT (content): Merge conflict in examples.md
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+$ git add README.md
+$ git add examples.md
+$ git commit -m "Resolve merge conflict"
+[master 18481b5] Resolve merge conflict
+$ git branch -d edits
+Deleted branch edits (was 0dc9f6a).
+
+
+
+
+Javascript homework:
+
+$ git clone maryrose-hw my_clone
+Cloning into 'my_clone'...
+done.
+$ cd my_clone
+$ git branch homework
+$ git checkout homework
+Switched to branch 'homework'
+$ git add homework.js
+$ git commit -m "new comment"
+[homework b741b9d] new comment
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git push origin homework
+Counting objects: 3, done.
+Delta compression using up to 16 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 282 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To /home/ccuser/workspace/js-homework/maryrose-hw
+ * [new branch]      homework -> homework
+$ cd ../maryrose-hw
+
+
+
+
+
+Recipe book:
+
+$ cd veggie-favorites
+$ git add chili.txt
+$ git add squash-lasagna.txt
+$ git commit -m "2files changed"
+[master b636b5d] 2files changed
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+$ cd ../veggie-clone
+$ git fetch
+remote: Counting objects: 17, done.
+remote: Compressing objects: 100% (17/17), done.
+remote: Total 17 (delta 9), reused 0 (delta 0)
+Unpacking objects: 100% (17/17), done.
+From /home/ccuser/workspace/recipe-book-a/veggie-favorites
+ * [new branch]      master     -> origin/master
+$ git merge origin/master master
+Updating 4681ee4..b636b5d
+Fast-forward
+ chili.txt          | 16 ++++++++--------
+ margherita.txt     | 11 +++++++----
+ squash-lasagna.txt |  5 +++--
+ 3 files changed, 18 insertions(+), 14 deletions(-)
+$ git branch recipe
+$ git checkout recipe
+Switched to branch 'recipe'
+$ git add new-recipe.txt
+$ git commit -m "new-recipe added"
+[recipe 77a16c5] new-recipe added
+ 1 file changed, 1 insertion(+)
+$ git fetch
+$ git push origin recipe
+Counting objects: 3, done.
+Delta compression using up to 16 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 277 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To /home/ccuser/workspace/recipe-book-a/veggie-favorites
+ * [new branch]      recipe -> recipe
+$ cd ../veggie-favorites
+
